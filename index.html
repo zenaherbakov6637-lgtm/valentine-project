@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SYSTEM ACCESS DENIED</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --matrix-green: #00ff00;
+            --matrix-dark: #0a0a0a;
+            --cyber-pink: #ff00ff;
+            --cyber-blue: #00ffff;
+            --cyber-purple: #9d00ff;
+            --danger-red: #ff0000;
+            --warning-yellow: #ffff00;
+        }
+
+        body {
+            font-family: 'Share Tech Mono', monospace;
+            background: linear-gradient(135deg, #000000 0%, #0f0c29 50%, #302b63 100%);
+            min-height: 100vh;
+            overflow: hidden;
+            position: relative;
+            color: var(--matrix-green);
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                repeating-linear-gradient(
+                    rgba(0, 0, 0, 0.1) 0px,
+                    rgba(0, 0, 0, 0.1) 1px,
+                    transparent 1px,
+                    transparent 20px
+                ),
+                repeating-linear-gradient(
+                    90deg,
+                    rgba(0, 0, 0, 0.1) 0px,
+                    rgba(0, 0, 0, 0.1) 1px,
+                    transparent 1px,
+                    transparent 20px
+                );
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Матричный дождь */
+        .matrix-rain {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .matrix-column {
+            position: absolute;
+            top: -100px;
+            color: var(--matrix-green);
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 16px;
+            text-shadow: 0 0 5px var(--matrix-green);
+            animation: matrix-fall var(--duration, 10s) linear infinite var(--delay, 0s);
+        }
+
+        @keyframes matrix-fall {
+            to {
+                transform: translateY(100vh);
+            }
+        }
+
+        .container {
+            position: relative;
+            z-index: 10;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .terminal {
+            background: rgba(0, 0, 0, 0.9);
+            border: 2px solid var(--matrix-green);
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 
+                0 0 20px var(--matrix-green),
+                inset 0 0 15px rgba(0, 255, 0, 0.5);
+            max-width: 800px;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .terminal::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                rgba(0, 20, 0, 0.3),
+                rgba(0, 40, 0, 0.5),
+                rgba(0, 20, 0, 0.3)
+            );
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .terminal-header {
+            border-bottom: 2px solid var(--matrix-green);
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .terminal-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 28px;
+            color: var(--matrix-green);
+            text-shadow: 0 0 10px var(--matrix-green);
+            letter-spacing: 3px;
+        }
+
+        .terminal-subtitle {
+            font-size: 14px;
+            color: var(--cyber-blue);
+            margin-top: 5px;
+            letter-spacing: 2px;
+        }
+
+        .terminal-content {
+            position: relative;
+            z-index: 10;
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .terminal-line {
+            margin: 10px 0;
+            line-height: 1.6;
+            white-space: pre-wrap;
+            word-break: break-word;
+            animation: type 0.05s ease-out forwards;
+        }
+
+        @keyframes type {
+            from {
+                opacity: 0;
+                transform: translateX(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .blink {
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            50% {
+                opacity: 0;
+            }
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* Кнопки в стиле терминала */
+        .btn {
+            background: rgba(0, 255, 0, 0.1);
+            border: 2px solid var(--matrix-green);
+            color: var(--matrix-green);
+            padding: 12px 30px;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 10px 5px;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+            border-radius: 5px;
+        }
+
+        .btn:hover {
+            background: rgba(0, 255, 0, 0.3);
+            box-shadow: 0 0 15px var(--matrix-green);
+        }
+
+        .btn.danger {
+            border-color: var(--danger-red);
+            color: var(--danger-red);
+        }
+
+        .btn.danger:hover {
+            background: rgba(255, 0, 0, 0.2);
+            box-shadow: 0 0 15px var(--danger-red);
+        }
+
+        .btn.success {
+            border-color: var(--cyber-pink);
+            color: var(--cyber-pink);
+        }
+
+        .btn.success:hover {
+            background: rgba(255, 0, 255, 0.2);
+            box-shadow: 0 0 15px var(--cyber-pink);
+        }
+
+        .btn-container {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        /* Экран загрузки */
+        .loading-screen {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--matrix-dark);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .loading-bar {
+            width: 300px;
+            height: 20px;
+            background: rgba(0, 255, 0, 0.1);
+            border: 2px solid var(--matrix-green);
+            border-radius: 10px;
+            margin: 30px 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .loading-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--matrix-green), var(--cyber-blue));
+            transition: width 0.5s ease;
+            position: relative;
+        }
+
+        .loading-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 10px;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        .percentage {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: var(--matrix-green);
+            font-family: 'Orbitron', sans-serif;
+            font-size: 14px;
+        }
+
+        /* Мини-игра взлома */
+        .hack-game {
+            background: rgba(0, 20, 0, 0.9);
+            padding: 20px;
+            border: 2px solid var(--cyber-blue);
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        .code-block {
+            background: rgba(0, 30, 0, 0.8);
+            padding: 15px;
+            border-left: 4px solid var(--cyber-blue);
+            margin: 10px 0;
+            font-size: 14px;
+            line-height: 1.5;
+            overflow-x: auto;
+        }
+
+        .code-keyword {
+            color: var(--cyber-pink);
+        }
+
+        .code-string {
+            color: var(--cyber-blue);
+        }
+
+        .code-comment {
+            color: var(--warning-yellow);
+        }
+
+        .code-function {
+            color: var(--cyber-purple);
+        }
+
+        .password-input {
+            background: rgba(0, 40, 0, 0.8);
+            border: 2px solid var(--matrix-green);
+            color: var(--matrix-green);
+            padding: 10px 15px;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 16px;
+            width: 100%;
+            max-width: 400px;
+            margin: 10px 0;
+        }
+
+        .password-input:focus {
+            outline: none;
+            box-shadow: 0 0 10px var(--matrix-green);
+        }
+
+        /* Анимация доступа */
+        @keyframes accessGranted {
+            0% {
+                transform: scale(0.5);
+                opacity: 0;
+            }
+            50% {
+                transform: scale(1.1);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .access-granted {
+            animation: accessGranted 1s ease-out;
+        }
+
+        /* Секретное сообщение */
+        .secret-message {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 48px;
+            text-align: center;
+            background: linear-gradient(90deg, var(--cyber-pink), var(--cyber-blue), var(--matrix-green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin: 30px 0;
+            text-shadow: 0 0 20px rgba(255, 0, 255, 0.5);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 10px rgba(255, 0, 255, 0.5),
+                            0 0 20px rgba(0, 255, 255, 0.5),
+                            0 0 30px rgba(0, 255, 0, 0.5);
+            }
+            to {
+                text-shadow: 0 0 20px rgba(255, 0, 255, 0.8),
+                            0 0 40px rgba(0, 255, 255, 0.8),
+                            0 0 60px rgba(0, 255, 0, 0.8);
+            }
+        }
+
+        .emoji-explosion {
+            position: absolute;
+            font-size: 40px;
+            pointer-events: none;
+            animation: explode 2s ease-out forwards;
+            z-index: 50;
+        }
+
+        @keyframes explode {
+            0% {
+                transform: translate(0, 0) scale(0.5);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(var(--tx, 0), var(--ty, 0)) scale(2);
+                opacity: 0;
+            }
+        }
+
+        /* Стиль для телефона */
+        @media (max-width: 768px) {
+            .terminal {
+                padding: 20px;
+                margin: 10px;
+            }
+            .terminal-title {
+                font-size: 20px;
+            }
+            .loading-bar {
+                width: 250px;
+            }
+            .secret-message {
+                font-size: 32px;
+            }
+            .btn {
+                width: 100%;
+                margin: 5px 0;
+            }
+            .btn-container {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Матричный дождь -->
+    <div class="matrix-rain" id="matrixRain"></div>
+
+    <!-- Экран загрузки -->
+    <div class="loading-screen" id="loadingScreen">
+        <h1 style="font-family: 'Orbitron', sans-serif; font-size: 40px; color: var(--matrix-green); text-shadow: 0 0 20px var(--matrix-green);">
+            HEART_OS v2.14
+        </h1>
+        <p style="font-size: 18px; margin: 20px 0; color: var(--cyber-blue);">INITIALIZING LOVE PROTOCOL...</p>
+        <div class="loading-bar">
+            <div class="loading-fill" id="loadingFill">
+                <span class="percentage" id="percentage">0%</span>
+            </div>
+        </div>
+        <p id="loadingText" style="font-size: 14px; margin-top: 10px; color: var(--warning-yellow);"></p>
+    </div>
+
+    <div class="container">
+        <div class="terminal">
+            <div class="terminal-header">
+                <div class="terminal-title">> HEART_SYSTEM <</div>
+                <div class="terminal-subtitle">SECURITY LEVEL: MAXIMUM // ACCESS: RESTRICTED</div>
+            </div>
+
+            <div class="terminal-content">
+                <!-- Страница 1: Вход в систему -->
+                <div id="page1">
+                    <div class="terminal-line">$> CONNECTING TO HEART_SERVER...</div>
+                    <div class="terminal-line blink">$> _</div>
+                    <div class="btn-container">
+                        <button class="btn" onclick="startHack()">[ATTEMPT ACCESS]</button>
+                    </div>
+                </div>
+
+                <!-- Страница 2: Взлом системы -->
+                <div id="page2" class="hidden">
+                    <div class="terminal-line">$> SECURITY PROTOCOL DETECTED</div>
+                    <div class="terminal-line">$> INITIATING BYPASS...</div>
+                    <div class="terminal-line blink">$> ENTER OVERRIDE CODE: _</div>
+                    
+                    <div class="hack-game">
+                        <div class="code-block">
+<span class="code-comment">// HEART_SECURITY_PROTOCOL v3.14</span>
+<span class="code-keyword">function</span> <span class="code-function">decryptLove</span>(password) {
+    <span class="code-keyword">if</span> (password === <span class="code-string">"❤️"</span>) {
+        <span class="code-keyword">return</span> <span class="code-string">"ACCESS GRANTED"</span>;
+    }
+    <span class="code-keyword">else</span> {
+        <span class="code-keyword">return</span> <span class="code-string">"ACCESS DENIED"</span>;
+    }
+}
+                        </div>
+                        
+                        <input type="text" class="password-input" id="hackCode" placeholder="ENTER CODE..." maxlength="10">
+                        
+                        <div class="btn-container">
+                            <button class="btn success" onclick="tryHack()">
+                                <i class="fas fa-key"></i> DECRYPT
+                            </button>
+                            <button class="btn danger" onclick="abortHack()">
+                                <i class="fas fa-times"></i> ABORT
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Страница 3: Доступ разрешен -->
+                <div id="page3" class="hidden">
+                    <div class="terminal-line">$> OVERRIDE SUCCESSFUL</div>
+                    <div class="terminal-line">$> Bypassing firewall...</div>
+                    <div class="terminal-line">$> Decrypting emotional data...</div>
+                    <div class="terminal-line blink">$> LOADING SECRET MESSAGE...</div>
+                    
+                    <div class="btn-container">
+                        <button class="btn success" onclick="revealSecret()">
+                            <i class="fas fa-heart"></i> REVEAL TRUTH
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Страница 4: Секретное сообщение -->
+                <div id="page4" class="hidden">
+                    <div class="terminal-line">$> ACCESS GRANTED</div>
+                    <div class="terminal-line">$> SYSTEM COMPROMISED</div>
+                    <div class="terminal-line">$> EMOTIONAL FIREWALL: DISABLED</div>
+                    
+                    <div class="secret-message access-granted" id="secretMessage">
+                        I LOVE YOU
+                    </div>
+                    
+                    <div class="terminal-line">
+                        $> This heart has been permanently hacked.
+                        No antivirus can fix this.
+                        You own it now. ❤️‍🔥
+                    </div>
+                    
+                    <div class="btn-container">
+                        <button class="btn success" onclick="restart()">
+                            <i class="fas fa-redo"></i> RESTART HEART
+                        </button>
+                        <button class="btn" onclick="showCredits()">
+                            <i class="fas fa-info"></i> CREDITS
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Страница 5: Кредиты -->
+                <div id="page5" class="hidden">
+                    <div class="terminal-line">$> HEART_OS v2.14</div>
+                    <div class="terminal-line">$> Created with love and code</div>
+                    <div class="terminal-line">$> For the one who hacked my heart first</div>
+                    <div class="terminal-line">$> Happy Valentine's Day! 💖</div>
+                    
+                    <div style="margin-top: 30px; text-align: center;">
+                        <div style="font-size: 60px; margin: 20px;">❤️‍🔥</div>
+                        <p style="font-size: 18px; color: var(--cyber-pink);">YOU ARE THE ADMIN OF MY HEART</p>
+                    </div>
+                    
+                    <div class="btn-container">
+                        <button class="btn" onclick="restart()">
+                            <i class="fas fa-home"></i> MAIN MENU
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Создание матричного дождя
+        function createMatrixRain() {
+            const container = document.getElementById('matrixRain');
+            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+-=[]{}|;:,.<>?abcdefghijklmnopqrstuvwxyz';
+            const columnCount = Math.floor(window.innerWidth / 20);
+            
+            for (let i = 0; i < columnCount; i++) {
+                const column = document.createElement('div');
+                column.className = 'matrix-column';
+                
+                const duration = Math.random() * 10 + 5;
+                const delay = Math.random() * 5;
+                column.style.setProperty('--duration', `${duration}s`);
+                column.style.setProperty('--delay', `${delay}s`);
+                column.style.left = `${i * 20}px`;
+                
+                // Генерация случайных символов
+                const text = Array.from({length: 100}, () => chars.charAt(Math.floor(Math.random() * chars.length))).join('');
+                column.textContent = text;
+                
+                container.appendChild(column);
+            }
+        }
+
+        // Экран загрузки
+        function simulateLoading() {
+            const loadingFill = document.getElementById('loadingFill');
+            const percentage = document.getElementById('percentage');
+            const loadingText = document.getElementById('loadingText');
+            const loadingScreen = document.getElementById('loadingScreen');
+            
+            const messages = [
+                "Loading emotional drivers...",
+                "Bypassing security protocols...",
+                "Decrypting love algorithms...",
+                "Initializing heart connection...",
+                "Compiling romantic data...",
+                "Establishing neural link...",
+                "Calibrating happiness sensors...",
+                "Injecting affection modules..."
+            ];
+            
+            let progress = 0;
+            let messageIndex = 0;
+            
+            const interval = setInterval(() => {
+                progress += Math.random() * 5;
+                if (progress > 100) progress = 100;
+                
+                loadingFill.style.width = `${progress}%`;
+                percentage.textContent = `${Math.floor(progress)}%`;
+                
+                if (Math.random() > 0.7 && messageIndex < messages.length) {
+                    loadingText.textContent = messages[messageIndex];
+                    messageIndex++;
+                }
+                
+                if (progress >= 100) {
+                    clearInterval(interval);
+                    setTimeout(() => {
+                        loadingScreen.style.opacity = '0';
+                        setTimeout(() => {
+                            loadingScreen.style.display = 'none';
+                        }, 500);
+                    }, 500);
+                }
+            }, 100);
+        }
+
+        // Взрыв эмодзи
+        function createEmojiExplosion() {
+            const emojis = ['❤️', '💕', '💖', '💘', '💝', '💗', '💓', '💞', '💟', '✨', '💫', '🌟'];
+            const container = document.body;
+            
+            for (let i = 0; i < 50; i++) {
+                setTimeout(() => {
+                    const emoji = document.createElement('div');
+                    emoji.className = 'emoji-explosion';
+                    emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                    
+                    const x = Math.random() * window.innerWidth;
+                    const y = Math.random() * window.innerHeight;
+                    emoji.style.left = `${x}px`;
+                    emoji.style.top = `${y}px`;
+                    
+                    const tx = (Math.random() - 0.5) * 300;
+                    const ty = (Math.random() - 0.5) * 300;
+                    emoji.style.setProperty('--tx', `${tx}px`);
+                    emoji.style.setProperty('--ty', `${ty}px`);
+                    
+                    container.appendChild(emoji);
+                    
+                    setTimeout(() => {
+                        emoji.remove();
+                    }, 2000);
+                }, i * 50);
+            }
+        }
+
+        // Переключение страниц
+        function showPage(pageNum) {
+            document.querySelectorAll('.terminal-content > div').forEach(page => {
+                page.classList.add('hidden');
+            });
+            document.getElementById(`page${pageNum}`).classList.remove('hidden');
+        }
+
+        // Начать взлом
+        function startHack() {
+            showPage(2);
+            
+            // Анимация печатания
+            setTimeout(() => {
+                const lines = document.querySelectorAll('#page2 .terminal-line');
+                lines[0].style.animation = 'type 0.5s ease-out forwards';
+                setTimeout(() => {
+                    lines[1].style.animation = 'type 0.5s ease-out forwards';
+                    setTimeout(() => {
+                        lines[2].style.animation = 'type 0.5s ease-out forwards';
+                    }, 300);
+                }, 300);
+            }, 100);
+        }
+
+        // Попытка взлома
+        function tryHack() {
+            const code = document.getElementById('hackCode').value.trim();
+            const correctCodes = ['❤️', 'love', 'LOVE', 'любовь', '1402', '214', 'valentine', 'VALENTINE', 'ily', 'ILOVEYOU'];
+            
+            if (correctCodes.includes(code)) {
+                showPage(3);
+                
+                // Анимация загрузки
+                setTimeout(() => {
+                    const lines = document.querySelectorAll('#page3 .terminal-line');
+                    lines[0].style.animation = 'type 0.3s ease-out forwards';
+                    setTimeout(() => {
+                        lines[1].style.animation = 'type 0.3s ease-out forwards';
+                        setTimeout(() => {
+                            lines[2].style.animation = 'type 0.3s ease-out forwards';
+                            setTimeout(() => {
+                                lines[3].style.animation = 'type 0.3s ease-out forwards';
+                            }, 300);
+                        }, 300);
+                    }, 300);
+                }, 100);
+            } else {
+                // Неправильный код
+                const input = document.getElementById('hackCode');
+                input.style.borderColor = 'var(--danger-red)';
+                input.style.boxShadow = '0 0 15px var(--danger-red)';
+                
+                setTimeout(() => {
+                    input.style.borderColor = 'var(--matrix-green)';
+                    input.style.boxShadow = '0 0 10px var(--matrix-green)';
+                }, 1000);
+                
+                // ошибка
+                const gameDiv = document.querySelector('.hack-game');
+                const error = document.createElement('div');
+                error.style.color = 'var(--danger-red)';
+                error.style.marginTop = '10px';
+                error.style.fontWeight = 'bold';
+                error.textContent = 'ACCESS DENIED - TRY AGAIN';
+                gameDiv.appendChild(error);
+                
+                setTimeout(() => {
+                    error.remove();
+                }, 2000);
+            }
+        }
+
+        // Отмена взлома
+        function abortHack() {
+            showPage(1);
+        }
+
+        // Раскрыть секрет
+        function revealSecret() {
+            showPage(4);
+            createEmojiExplosion();
+            
+            // Изменить сообщение для разнообразия
+            const messages = [
+                "I LOVE YOU",
+                "ТЫ МОЯ ЛЮБОВЬ",
+                "YOU OWN MY HEART",
+                "FOREVER YOURS",
+                "MY HEART IS YOURS",
+                "LOVE YOU TO THE MOON AND BACK",
+                "YOU ARE MY EVERYTHING",
+                "MY SOUL BELONGS TO YOU"
+            ];
+            
+            const message = messages[Math.floor(Math.random() * messages.length)];
+            document.getElementById('secretMessage').textContent = message;
+        }
+
+        // Показать кредиты
+        function showCredits() {
+            showPage(5);
+        }
+
+        // Перезапустить
+        function restart() {
+            document.getElementById('hackCode').value = '';
+            showPage(1);
+        }
+
+        // Инициализация
+        window.onload = function() {
+            createMatrixRain();
+            simulateLoading();
+            
+            // Добавить звуковые эффекты (визуальные)
+            document.addEventListener('click', () => {
+                // Можно добавить вибрацию на телефонах
+                if ('vibrate' in navigator) {
+                    navigator.vibrate(50);
+                }
+            });
+        };
+
+        // Пасхалка: нажатие на Ctrl+H
+        document.addEventListener('keydown', (e) => {
+            if (e.ctrlKey && e.key === 'h') {
+                e.preventDefault();
+                if (document.getElementById('page1').classList.contains('hidden')) {
+                    showPage(1);
+                }
+            }
+        });
+
+        // Пасхалка: ввод "iloveyou" на любой странице
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' && !document.getElementById('hackCode').contains(document.activeElement)) {
+                const code = document.getElementById('hackCode').value.trim().toLowerCase();
+                if (code === 'iloveyou' || code === 'люблю') {
+                    revealSecret();
+                }
+            }
+        });
+    </script>
+</body>
+</html>
