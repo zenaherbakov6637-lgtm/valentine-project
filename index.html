@@ -3,814 +3,927 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SYSTEM ACCESS DENIED</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>Flower Hack | I LOVE YOU</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --matrix-green: #00ff00;
-            --matrix-dark: #0a0a0a;
-            --cyber-pink: #ff00ff;
-            --cyber-blue: #00ffff;
-            --cyber-purple: #9d00ff;
-            --danger-red: #ff0000;
-            --warning-yellow: #ffff00;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
         body {
-            font-family: 'Share Tech Mono', monospace;
-            background: linear-gradient(135deg, #000000 0%, #0f0c29 50%, #302b63 100%);
-            min-height: 100vh;
+            background: #000;
+            color: #0f0;
+            font-family: 'Courier New', monospace;
             overflow: hidden;
-            position: relative;
-            color: var(--matrix-green);
+            min-height: 100vh;
         }
 
-        body::before {
-            content: '';
-            position: absolute;
+        #matrixCanvas {
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: 
-                repeating-linear-gradient(
-                    rgba(0, 0, 0, 0.1) 0px,
-                    rgba(0, 0, 0, 0.1) 1px,
-                    transparent 1px,
-                    transparent 20px
-                ),
-                repeating-linear-gradient(
-                    90deg,
-                    rgba(0, 0, 0, 0.1) 0px,
-                    rgba(0, 0, 0, 0.1) 1px,
-                    transparent 1px,
-                    transparent 20px
-                );
-            pointer-events: none;
             z-index: 1;
         }
 
-        /* Матричный дождь */
-        .matrix-rain {
-            position: absolute;
-            top: 0;
-            left: 0;
+        .heart-container {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        #heartCanvas {
             width: 100%;
             height: 100%;
-            overflow: hidden;
-            z-index: 0;
-        }
-
-        .matrix-column {
-            position: absolute;
-            top: -100px;
-            color: var(--matrix-green);
-            font-family: 'Share Tech Mono', monospace;
-            font-size: 16px;
-            text-shadow: 0 0 5px var(--matrix-green);
-            animation: matrix-fall var(--duration, 10s) linear infinite var(--delay, 0s);
-        }
-
-        @keyframes matrix-fall {
-            to {
-                transform: translateY(100vh);
-            }
         }
 
         .container {
             position: relative;
             z-index: 10;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            max-width: 750px;
+            margin: 0 auto;
             padding: 20px;
-        }
-
-        .terminal {
-            background: rgba(0, 0, 0, 0.9);
-            border: 2px solid var(--matrix-green);
-            border-radius: 10px;
-            padding: 30px;
-            box-shadow: 
-                0 0 20px var(--matrix-green),
-                inset 0 0 15px rgba(0, 255, 0, 0.5);
-            max-width: 800px;
-            width: 100%;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .terminal::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(
-                rgba(0, 20, 0, 0.3),
-                rgba(0, 40, 0, 0.5),
-                rgba(0, 20, 0, 0.3)
-            );
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        .terminal-header {
-            border-bottom: 2px solid var(--matrix-green);
-            padding-bottom: 15px;
-            margin-bottom: 20px;
-            position: relative;
-            z-index: 10;
-        }
-
-        .terminal-title {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 28px;
-            color: var(--matrix-green);
-            text-shadow: 0 0 10px var(--matrix-green);
-            letter-spacing: 3px;
-        }
-
-        .terminal-subtitle {
-            font-size: 14px;
-            color: var(--cyber-blue);
-            margin-top: 5px;
-            letter-spacing: 2px;
-        }
-
-        .terminal-content {
-            position: relative;
-            z-index: 10;
-            min-height: 400px;
+            text-align: center;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
         }
 
-        .terminal-line {
-            margin: 10px 0;
-            line-height: 1.6;
-            white-space: pre-wrap;
-            word-break: break-word;
-            animation: type 0.05s ease-out forwards;
+        .header {
+            margin-bottom: 20px;
+            animation: glitch 2s infinite;
         }
 
-        @keyframes type {
-            from {
-                opacity: 0;
-                transform: translateX(-10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
+        @keyframes glitch {
+            0%, 100% { text-shadow: 0 0 10px #0f0; }
+            50% { text-shadow: 0 0 20px #0f0, 0 0 30px #f0f; }
         }
 
-        .blink {
+        .title {
+            font-size: 2em;
+            margin-bottom: 10px;
+            color: #0f0;
+        }
+
+        .timer {
+            font-size: 2.5em;
+            color: #f00;
+            margin: 15px 0;
             animation: blink 1s infinite;
+            text-shadow: 0 0 20px #f00;
         }
 
         @keyframes blink {
-            50% {
-                opacity: 0;
-            }
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
         }
 
-        .hidden {
-            display: none;
+        .terminal {
+            background: rgba(0, 20, 0, 0.9);
+            border: 2px solid #0f0;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 15px 0;
+            box-shadow: 0 0 30px rgba(0, 255, 0, 0.4);
         }
 
-        /* Кнопки в стиле терминала */
-        .btn {
-            background: rgba(0, 255, 0, 0.1);
-            border: 2px solid var(--matrix-green);
-            color: var(--matrix-green);
-            padding: 12px 30px;
-            font-family: 'Share Tech Mono', monospace;
-            font-size: 16px;
-            cursor: pointer;
-            margin: 10px 5px;
-            transition: all 0.3s;
-            position: relative;
-            overflow: hidden;
+        #terminalOutput {
+            max-height: 200px;
+            overflow-y: auto;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .message {
+            margin: 8px 0;
+            padding: 8px;
             border-radius: 5px;
-        }
-
-        .btn:hover {
-            background: rgba(0, 255, 0, 0.3);
-            box-shadow: 0 0 15px var(--matrix-green);
-        }
-
-        .btn.danger {
-            border-color: var(--danger-red);
-            color: var(--danger-red);
-        }
-
-        .btn.danger:hover {
-            background: rgba(255, 0, 0, 0.2);
-            box-shadow: 0 0 15px var(--danger-red);
-        }
-
-        .btn.success {
-            border-color: var(--cyber-pink);
-            color: var(--cyber-pink);
-        }
-
-        .btn.success:hover {
-            background: rgba(255, 0, 255, 0.2);
-            box-shadow: 0 0 15px var(--cyber-pink);
-        }
-
-        .btn-container {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            margin-top: 20px;
-        }
-
-        /* Экран загрузки */
-        .loading-screen {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--matrix-dark);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 100;
-            animation: fadeIn 0.5s ease-out;
+            animation: fadeIn 0.3s;
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from { opacity: 0; transform: translateX(-10px); }
+            to { opacity: 1; transform: translateX(0); }
         }
 
-        .loading-bar {
-            width: 300px;
-            height: 20px;
-            background: rgba(0, 255, 0, 0.1);
-            border: 2px solid var(--matrix-green);
-            border-radius: 10px;
-            margin: 30px 0;
+        .message.info { color: #0ff; background: rgba(0, 255, 255, 0.1); }
+        .message.success { color: #0f0; background: rgba(0, 255, 0, 0.1); }
+        .message.error { color: #f00; background: rgba(255, 0, 0, 0.1); }
+        .message.hint { color: #ff0; background: rgba(255, 255, 0, 0.1); }
+
+        .progress-bar {
+            width: 100%;
+            height: 25px;
+            background: #111;
+            border: 2px solid #0f0;
+            border-radius: 12px;
             overflow: hidden;
+            margin: 15px 0;
             position: relative;
         }
 
-        .loading-fill {
+        .progress-fill {
             height: 100%;
+            background: linear-gradient(90deg, #0f0, #0ff);
             width: 0%;
-            background: linear-gradient(90deg, var(--matrix-green), var(--cyber-blue));
             transition: width 0.5s ease;
-            position: relative;
+            box-shadow: 0 0 10px #0f0;
         }
 
-        .loading-fill::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 10px;
-            height: 100%;
-            background: rgba(255, 255, 255, 0.5);
-        }
-
-        .percentage {
+        .progress-text {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            color: var(--matrix-green);
-            font-family: 'Orbitron', sans-serif;
-            font-size: 14px;
+            color: #fff;
+            font-weight: bold;
+            text-shadow: 0 0 5px #000;
         }
 
-        /* Мини-игра взлома */
-        .hack-game {
-            background: rgba(0, 20, 0, 0.9);
-            padding: 20px;
-            border: 2px solid var(--cyber-blue);
-            border-radius: 10px;
-            margin-top: 20px;
+        .level-indicator {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 15px 0;
         }
 
-        .code-block {
-            background: rgba(0, 30, 0, 0.8);
-            padding: 15px;
-            border-left: 4px solid var(--cyber-blue);
-            margin: 10px 0;
-            font-size: 14px;
-            line-height: 1.5;
-            overflow-x: auto;
+        .level-dot {
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            background: #222;
+            border: 2px solid #0f0;
+            transition: all 0.3s;
         }
 
-        .code-keyword {
-            color: var(--cyber-pink);
+        .level-dot.active {
+            background: #0f0;
+            box-shadow: 0 0 15px #0f0;
+            transform: scale(1.2);
         }
 
-        .code-string {
-            color: var(--cyber-blue);
+        .level-dot.completed {
+            background: #0ff;
+            box-shadow: 0 0 15px #0ff;
         }
 
-        .code-comment {
-            color: var(--warning-yellow);
-        }
-
-        .code-function {
-            color: var(--cyber-purple);
+        .input-group {
+            margin: 20px 0;
         }
 
         .password-input {
-            background: rgba(0, 40, 0, 0.8);
-            border: 2px solid var(--matrix-green);
-            color: var(--matrix-green);
-            padding: 10px 15px;
-            font-family: 'Share Tech Mono', monospace;
-            font-size: 16px;
-            width: 100%;
-            max-width: 400px;
-            margin: 10px 0;
+            width: 300px;
+            padding: 12px 20px;
+            font-size: 1.1em;
+            background: rgba(0, 20, 0, 0.8);
+            border: 2px solid #0f0;
+            border-radius: 25px;
+            color: #0f0;
+            text-align: center;
+            outline: none;
+            transition: all 0.3s;
         }
 
         .password-input:focus {
-            outline: none;
-            box-shadow: 0 0 10px var(--matrix-green);
+            border-color: #f0f;
+            box-shadow: 0 0 20px rgba(255, 0, 255, 0.5);
         }
 
-        /* Анимация доступа */
-        @keyframes accessGranted {
-            0% {
-                transform: scale(0.5);
-                opacity: 0;
-            }
-            50% {
-                transform: scale(1.1);
-                opacity: 1;
-            }
-            100% {
-                transform: scale(1);
-                opacity: 1;
-            }
+        .btn-group {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin: 15px 0;
+            flex-wrap: wrap;
         }
 
-        .access-granted {
-            animation: accessGranted 1s ease-out;
+        .btn {
+            padding: 12px 30px;
+            font-size: 1em;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
         }
 
-        /* Секретное сообщение */
-        .secret-message {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 48px;
-            text-align: center;
-            background: linear-gradient(90deg, var(--cyber-pink), var(--cyber-blue), var(--matrix-green));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin: 30px 0;
-            text-shadow: 0 0 20px rgba(255, 0, 255, 0.5);
-            animation: glow 2s ease-in-out infinite alternate;
+        .btn-decrypt {
+            background: linear-gradient(135deg, #0f0, #0aa);
+            color: #000;
+        }
+
+        .btn-decrypt:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 25px rgba(0, 255, 0, 0.6);
+        }
+
+        .btn-abort {
+            background: linear-gradient(135deg, #f00, #f60);
+            color: #fff;
+        }
+
+        .btn-abort:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 25px rgba(255, 0, 0, 0.6);
+        }
+
+        .btn-hint {
+            background: linear-gradient(135deg, #ff0, #fa0);
+            color: #000;
+        }
+
+        .btn-hint:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 25px rgba(255, 255, 0, 0.6);
+        }
+
+        .flower-container {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 350px;
+            height: 350px;
+            z-index: 50;
+            display: none;
+            animation: flowerBloom 3s ease-out;
+        }
+
+        @keyframes flowerBloom {
+            0% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+            100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+        }
+
+        .flower { position: relative; width: 100%; height: 100%; }
+
+        .petal {
+            position: absolute;
+            width: 90px;
+            height: 90px;
+            background: linear-gradient(135deg, #f69, #f19);
+            border-radius: 50% 50% 0 50%;
+            transform-origin: bottom right;
+            animation: petalWave 3s infinite;
+            box-shadow: 0 0 25px rgba(255, 105, 180, 0.6);
+        }
+
+        @keyframes petalWave {
+            0%, 100% { transform: rotate(var(--rotation)) scale(1); }
+            50% { transform: rotate(var(--rotation)) scale(1.15); }
+        }
+
+        .flower-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 70px;
+            height: 70px;
+            background: radial-gradient(circle, #ff0, #f60);
+            border-radius: 50%;
+            box-shadow: 0 0 40px rgba(255, 255, 0, 0.9);
+            animation: glow 2s infinite;
         }
 
         @keyframes glow {
-            from {
-                text-shadow: 0 0 10px rgba(255, 0, 255, 0.5),
-                            0 0 20px rgba(0, 255, 255, 0.5),
-                            0 0 30px rgba(0, 255, 0, 0.5);
-            }
-            to {
-                text-shadow: 0 0 20px rgba(255, 0, 255, 0.8),
-                            0 0 40px rgba(0, 255, 255, 0.8),
-                            0 0 60px rgba(0, 255, 0, 0.8);
-            }
+            0%, 100% { box-shadow: 0 0 40px rgba(255, 255, 0, 0.9); }
+            50% { box-shadow: 0 0 60px rgba(255, 255, 0, 1); }
         }
 
-        .emoji-explosion {
-            position: absolute;
-            font-size: 40px;
-            pointer-events: none;
-            animation: explode 2s ease-out forwards;
-            z-index: 50;
+        .success-message {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 100;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.95);
+            padding: 40px;
+            border-radius: 20px;
+            border: 3px solid #f69;
+            box-shadow: 0 0 50px rgba(255, 105, 180, 0.6);
+            animation: successPulse 2s infinite;
         }
 
-        @keyframes explode {
-            0% {
-                transform: translate(0, 0) scale(0.5);
-                opacity: 1;
-            }
-            100% {
-                transform: translate(var(--tx, 0), var(--ty, 0)) scale(2);
-                opacity: 0;
-            }
+        @keyframes successPulse {
+            0%, 100% { box-shadow: 0 0 50px rgba(255, 105, 180, 0.6); }
+            50% { box-shadow: 0 0 80px rgba(255, 105, 180, 0.9); }
         }
 
-        /* Стиль для телефона */
-        @media (max-width: 768px) {
-            .terminal {
-                padding: 20px;
-                margin: 10px;
-            }
-            .terminal-title {
-                font-size: 20px;
-            }
-            .loading-bar {
-                width: 250px;
-            }
-            .secret-message {
-                font-size: 32px;
-            }
-            .btn {
-                width: 100%;
-                margin: 5px 0;
-            }
-            .btn-container {
-                flex-direction: column;
-            }
+        .success-text {
+            font-size: 2.5em;
+            color: #f69;
+            text-shadow: 0 0 30px #f69;
+            margin-bottom: 20px;
+        }
+
+        .love-text {
+            font-size: 3.5em;
+            color: #f19;
+            text-shadow: 0 0 50px #f19;
+            animation: heartbeat 1s infinite;
+            margin: 20px 0;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .secret-message {
+            color: #fff;
+            margin: 20px 0;
+            font-size: 1.1em;
+            line-height: 1.8;
+        }
+
+        .controls {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .control-btn {
+            background: rgba(0, 20, 0, 0.9);
+            border: 2px solid #0f0;
+            color: #0f0;
+            padding: 8px 15px;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.9em;
+        }
+
+        .control-btn:hover {
+            background: #0f0;
+            color: #000;
+        }
+
+        .volume-slider {
+            width: 100px;
+            margin-top: 5px;
+        }
+
+        @media (max-width: 600px) {
+            .title { font-size: 1.5em; }
+            .timer { font-size: 2em; }
+            .password-input { width: 240px; }
+            .heart-container { width: 400px; height: 400px; }
+            .flower-container { width: 250px; height: 250px; }
+            .love-text { font-size: 2.5em; }
+            .controls { top: 10px; right: 10px; }
         }
     </style>
 </head>
 <body>
-    <!-- Матричный дождь -->
-    <div class="matrix-rain" id="matrixRain"></div>
-
-    <!-- Экран загрузки -->
-    <div class="loading-screen" id="loadingScreen">
-        <h1 style="font-family: 'Orbitron', sans-serif; font-size: 40px; color: var(--matrix-green); text-shadow: 0 0 20px var(--matrix-green);">
-            HEART_OS v2.14
-        </h1>
-        <p style="font-size: 18px; margin: 20px 0; color: var(--cyber-blue);">INITIALIZING LOVE PROTOCOL...</p>
-        <div class="loading-bar">
-            <div class="loading-fill" id="loadingFill">
-                <span class="percentage" id="percentage">0%</span>
-            </div>
-        </div>
-        <p id="loadingText" style="font-size: 14px; margin-top: 10px; color: var(--warning-yellow);"></p>
+    <canvas id="matrixCanvas"></canvas>
+    <div class="heart-container"><canvas id="heartCanvas"></canvas></div>
+    
+    <div class="controls">
+        <button class="control-btn" onclick="toggleMusic()" id="musicBtn">🎵 Music: OFF</button>
+        <button class="control-btn" onclick="toggleSound()" id="soundBtn">🔊 Sound: ON</button>
+        <input type="range" class="volume-slider" min="0" max="100" value="50" onchange="setVolume(this.value)">
     </div>
 
     <div class="container">
+        <div class="header">
+            <h1 class="title">🌸 FLOWER_HACK v3.14</h1>
+            <div class="timer" id="timer">05:00</div>
+        </div>
+
+        <div class="level-indicator" id="levelIndicator">
+            <div class="level-dot active"></div>
+            <div class="level-dot"></div>
+            <div class="level-dot"></div>
+            <div class="level-dot"></div>
+        </div>
+
         <div class="terminal">
-            <div class="terminal-header">
-                <div class="terminal-title">> HEART_SYSTEM <</div>
-                <div class="terminal-subtitle">SECURITY LEVEL: MAXIMUM // ACCESS: RESTRICTED</div>
+            <div id="terminalOutput"></div>
+            
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+                <span class="progress-text" id="progressText">0%</span>
             </div>
 
-            <div class="terminal-content">
-                <!-- Страница 1: Вход в систему -->
-                <div id="page1">
-                    <div class="terminal-line">$> CONNECTING TO HEART_SERVER...</div>
-                    <div class="terminal-line blink">$> _</div>
-                    <div class="btn-container">
-                        <button class="btn" onclick="startHack()">[ATTEMPT ACCESS]</button>
-                    </div>
-                </div>
+            <div class="input-group">
+                <input type="text" class="password-input" id="passwordInput" 
+                       placeholder="Введите код..." autocomplete="off">
+            </div>
 
-                <!-- Страница 2: Взлом системы -->
-                <div id="page2" class="hidden">
-                    <div class="terminal-line">$> SECURITY PROTOCOL DETECTED</div>
-                    <div class="terminal-line">$> INITIATING BYPASS...</div>
-                    <div class="terminal-line blink">$> ENTER OVERRIDE CODE: _</div>
-                    
-                    <div class="hack-game">
-                        <div class="code-block">
-<span class="code-comment">// HEART_SECURITY_PROTOCOL v3.14</span>
-<span class="code-keyword">function</span> <span class="code-function">decryptLove</span>(password) {
-    <span class="code-keyword">if</span> (password === <span class="code-string">"❤️"</span>) {
-        <span class="code-keyword">return</span> <span class="code-string">"ACCESS GRANTED"</span>;
-    }
-    <span class="code-keyword">else</span> {
-        <span class="code-keyword">return</span> <span class="code-string">"ACCESS DENIED"</span>;
-    }
-}
-                        </div>
-                        
-                        <input type="text" class="password-input" id="hackCode" placeholder="ENTER CODE..." maxlength="10">
-                        
-                        <div class="btn-container">
-                            <button class="btn success" onclick="tryHack()">
-                                <i class="fas fa-key"></i> DECRYPT
-                            </button>
-                            <button class="btn danger" onclick="abortHack()">
-                                <i class="fas fa-times"></i> ABORT
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Страница 3: Доступ разрешен -->
-                <div id="page3" class="hidden">
-                    <div class="terminal-line">$> OVERRIDE SUCCESSFUL</div>
-                    <div class="terminal-line">$> Bypassing firewall...</div>
-                    <div class="terminal-line">$> Decrypting emotional data...</div>
-                    <div class="terminal-line blink">$> LOADING SECRET MESSAGE...</div>
-                    
-                    <div class="btn-container">
-                        <button class="btn success" onclick="revealSecret()">
-                            <i class="fas fa-heart"></i> REVEAL TRUTH
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Страница 4: Секретное сообщение -->
-                <div id="page4" class="hidden">
-                    <div class="terminal-line">$> ACCESS GRANTED</div>
-                    <div class="terminal-line">$> SYSTEM COMPROMISED</div>
-                    <div class="terminal-line">$> EMOTIONAL FIREWALL: DISABLED</div>
-                    
-                    <div class="secret-message access-granted" id="secretMessage">
-                        I LOVE YOU
-                    </div>
-                    
-                    <div class="terminal-line">
-                        $> This heart has been permanently hacked.
-                        No antivirus can fix this.
-                        You own it now. ❤️‍🔥
-                    </div>
-                    
-                    <div class="btn-container">
-                        <button class="btn success" onclick="restart()">
-                            <i class="fas fa-redo"></i> RESTART HEART
-                        </button>
-                        <button class="btn" onclick="showCredits()">
-                            <i class="fas fa-info"></i> CREDITS
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Страница 5: Кредиты -->
-                <div id="page5" class="hidden">
-                    <div class="terminal-line">$> HEART_OS v2.14</div>
-                    <div class="terminal-line">$> Created with love and code</div>
-                    <div class="terminal-line">$> For the one who hacked my heart first</div>
-                    <div class="terminal-line">$> Happy Valentine's Day! 💖</div>
-                    
-                    <div style="margin-top: 30px; text-align: center;">
-                        <div style="font-size: 60px; margin: 20px;">❤️‍🔥</div>
-                        <p style="font-size: 18px; color: var(--cyber-pink);">YOU ARE THE ADMIN OF MY HEART</p>
-                    </div>
-                    
-                    <div class="btn-container">
-                        <button class="btn" onclick="restart()">
-                            <i class="fas fa-home"></i> MAIN MENU
-                        </button>
-                    </div>
-                </div>
+            <div class="btn-group">
+                <button class="btn btn-decrypt" onclick="attemptDecrypt()">🔓 ВЗЛОМ</button>
+                <button class="btn btn-hint" onclick="showHint()">💡 ПОДСКАЗКА</button>
+                <button class="btn btn-abort" onclick="abortHack()">❌ ОТМЕНА</button>
             </div>
         </div>
     </div>
 
+    <div class="flower-container" id="flowerContainer"><div class="flower" id="flower"></div></div>
+
+    <div class="success-message" id="successMessage">
+        <h1 class="success-text">🌸 ДОСТУП РАЗРЕШЁН 🌸</h1>
+        <h1 class="love-text" id="loveText">Я ТЕБЯ ЛЮБЛЮ</h1>
+        <div class="secret-message" id="secretMessage"></div>
+        <button class="btn btn-decrypt" onclick="restartHack()" style="margin-top: 20px;">🔄 ЗАНОВО</button>
+    </div>
+
     <script>
-        // Создание матричного дождя
-        function createMatrixRain() {
-            const container = document.getElementById('matrixRain');
-            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+-=[]{}|;:,.<>?abcdefghijklmnopqrstuvwxyz';
-            const columnCount = Math.floor(window.innerWidth / 20);
-            
-            for (let i = 0; i < columnCount; i++) {
-                const column = document.createElement('div');
-                column.className = 'matrix-column';
-                
-                const duration = Math.random() * 10 + 5;
-                const delay = Math.random() * 5;
-                column.style.setProperty('--duration', `${duration}s`);
-                column.style.setProperty('--delay', `${delay}s`);
-                column.style.left = `${i * 20}px`;
-                
-                // Генерация случайных символов
-                const text = Array.from({length: 100}, () => chars.charAt(Math.floor(Math.random() * chars.length))).join('');
-                column.textContent = text;
-                
-                container.appendChild(column);
+        let currentLevel = 1, totalLevels = 4, progress = 0, timeLeft = 300;
+        let timerInterval, soundEnabled = true, musicEnabled = false, hackComplete = false;
+        let audioContext, musicOscillators = [], musicGain, drumInterval;
+        let musicVolume = 0.3;
+        let hintsUsed = 0;
+
+        // Random romantic messages
+        const romanticMessages = [
+            {
+                main: "Я ТЕБЯ ЛЮБЛЮ",
+                secret: `$> Этот цветок навсегда в твоём сердце<br>
+                        $> Никакой антивирус не поможет<br>
+                        $> Теперь он твой 💐❤️‍🔥`
+            },
+            {
+                main: "ТЫ МОЁ СЕРДЦЕ",
+                secret: `$> Ты украла моё сердце навсегда<br>
+                        $> Это необратимый процесс<br>
+                        $> Люблю тебя бесконечно 💖🌸`
+            },
+            {
+                main: "ТЫ МОЁ ВСЁ",
+                secret: `$> Ты значишь для меня всё<br>
+                        $> Без тебя мой мир пуст<br>
+                        $> Навсегда вместе 💕♾️`
+            },
+            {
+                main: "НАВСЕГДА ТВОЙ",
+                secret: `$> Моё сердце принадлежит тебе<br>
+                        $> Навечно и безвозвратно<br>
+                        $> Люблю больше жизни 💐❤️`
+            },
+            {
+                main: "ТЫ МОЯ СУДЬБА",
+                secret: `$> Мы созданы друг для друга<br>
+                        $> Это наша судьба<br>
+                        $> Вместе навсегда 🌸💖`
+            },
+            {
+                main: "ОБОЖАЮ ТЕБЯ",
+                secret: `$> Ты лучшее что со мной было<br>
+                        $> Обожаю каждую секунду с тобой<br>
+                        $> Ты моё счастье 💕🌺`
+            },
+            {
+                main: "ТЫ МОЙ МИР",
+                secret: `$> Ты весь мой мир<br>
+                        $> Без тебя ничего не имеет смысла<br>
+                        $> Люблю бесконечно 💐❤️‍🔥`
+            },
+            {
+                main: "ВЕЧНАЯ ЛЮБОВЬ",
+                secret: `$> Моя любовь к тебе вечна<br>
+                        $> Она не знает границ<br>
+                        $> Навсегда твоя 💖♾️`
+            },
+            {
+                main: "ТЫ МОЯ МЕЧТА",
+                secret: `$> Ты мечта всей моей жизни<br>
+                        $> Сбылась моя мечта<br>
+                        $> Люблю тебя 🌸💕`
+            },
+            {
+                main: "БЕЗУМНО ЛЮБЛЮ",
+                secret: `$> Безумно люблю тебя<br>
+                        $> Ты сводишь меня с ума<br>
+                        $> Ты моя вселенная 💐❤️`
+            },
+            {
+                main: "ТЫ МОЯ РАДОСТЬ",
+                secret: `$> Ты приносишь мне радость<br>
+                        $> С тобой я счастлив<br>
+                        $> Люблю тебя всегда 💖🌺`
+            },
+            {
+                main: "МОЁ СОКРОВИЩЕ",
+                secret: `$> Ты моё самое дорогое<br>
+                        $> Берегу тебя как сокровище<br>
+                        $> Люблю больше всего 💐💕`
             }
-        }
+        ];
 
-        // Экран загрузки
-        function simulateLoading() {
-            const loadingFill = document.getElementById('loadingFill');
-            const percentage = document.getElementById('percentage');
-            const loadingText = document.getElementById('loadingText');
-            const loadingScreen = document.getElementById('loadingScreen');
-            
-            const messages = [
-                "Loading emotional drivers...",
-                "Bypassing security protocols...",
-                "Decrypting love algorithms...",
-                "Initializing heart connection...",
-                "Compiling romantic data...",
-                "Establishing neural link...",
-                "Calibrating happiness sensors...",
-                "Injecting affection modules..."
-            ];
-            
-            let progress = 0;
-            let messageIndex = 0;
-            
-            const interval = setInterval(() => {
-                progress += Math.random() * 5;
-                if (progress > 100) progress = 100;
-                
-                loadingFill.style.width = `${progress}%`;
-                percentage.textContent = `${Math.floor(progress)}%`;
-                
-                if (Math.random() > 0.7 && messageIndex < messages.length) {
-                    loadingText.textContent = messages[messageIndex];
-                    messageIndex++;
-                }
-                
-                if (progress >= 100) {
-                    clearInterval(interval);
-                    setTimeout(() => {
-                        loadingScreen.style.opacity = '0';
-                        setTimeout(() => {
-                            loadingScreen.style.display = 'none';
-                        }, 500);
-                    }, 500);
-                }
-            }, 100);
-        }
-
-        // Взрыв эмодзи
-        function createEmojiExplosion() {
-            const emojis = ['❤️', '💕', '💖', '💘', '💝', '💗', '💓', '💞', '💟', '✨', '💫', '🌟'];
-            const container = document.body;
-            
-            for (let i = 0; i < 50; i++) {
-                setTimeout(() => {
-                    const emoji = document.createElement('div');
-                    emoji.className = 'emoji-explosion';
-                    emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
-                    
-                    const x = Math.random() * window.innerWidth;
-                    const y = Math.random() * window.innerHeight;
-                    emoji.style.left = `${x}px`;
-                    emoji.style.top = `${y}px`;
-                    
-                    const tx = (Math.random() - 0.5) * 300;
-                    const ty = (Math.random() - 0.5) * 300;
-                    emoji.style.setProperty('--tx', `${tx}px`);
-                    emoji.style.setProperty('--ty', `${ty}px`);
-                    
-                    container.appendChild(emoji);
-                    
-                    setTimeout(() => {
-                        emoji.remove();
-                    }, 2000);
-                }, i * 50);
-            }
-        }
-
-        // Переключение страниц
-        function showPage(pageNum) {
-            document.querySelectorAll('.terminal-content > div').forEach(page => {
-                page.classList.add('hidden');
-            });
-            document.getElementById(`page${pageNum}`).classList.remove('hidden');
-        }
-
-        // Начать взлом
-        function startHack() {
-            showPage(2);
-            
-            // Анимация печатания
-            setTimeout(() => {
-                const lines = document.querySelectorAll('#page2 .terminal-line');
-                lines[0].style.animation = 'type 0.5s ease-out forwards';
-                setTimeout(() => {
-                    lines[1].style.animation = 'type 0.5s ease-out forwards';
-                    setTimeout(() => {
-                        lines[2].style.animation = 'type 0.5s ease-out forwards';
-                    }, 300);
-                }, 300);
-            }, 100);
-        }
-
-        // Попытка взлома
-        function tryHack() {
-            const code = document.getElementById('hackCode').value.trim();
-            const correctCodes = ['❤️', 'love', 'LOVE', 'любовь', '1402', '214', 'valentine', 'VALENTINE', 'ily', 'ILOVEYOU'];
-            
-            if (correctCodes.includes(code)) {
-                showPage(3);
-                
-                // Анимация загрузки
-                setTimeout(() => {
-                    const lines = document.querySelectorAll('#page3 .terminal-line');
-                    lines[0].style.animation = 'type 0.3s ease-out forwards';
-                    setTimeout(() => {
-                        lines[1].style.animation = 'type 0.3s ease-out forwards';
-                        setTimeout(() => {
-                            lines[2].style.animation = 'type 0.3s ease-out forwards';
-                            setTimeout(() => {
-                                lines[3].style.animation = 'type 0.3s ease-out forwards';
-                            }, 300);
-                        }, 300);
-                    }, 300);
-                }, 100);
-            } else {
-                // Неправильный код
-                const input = document.getElementById('hackCode');
-                input.style.borderColor = 'var(--danger-red)';
-                input.style.boxShadow = '0 0 15px var(--danger-red)';
-                
-                setTimeout(() => {
-                    input.style.borderColor = 'var(--matrix-green)';
-                    input.style.boxShadow = '0 0 10px var(--matrix-green)';
-                }, 1000);
-                
-                // ошибка
-                const gameDiv = document.querySelector('.hack-game');
-                const error = document.createElement('div');
-                error.style.color = 'var(--danger-red)';
-                error.style.marginTop = '10px';
-                error.style.fontWeight = 'bold';
-                error.textContent = 'ACCESS DENIED - TRY AGAIN';
-                gameDiv.appendChild(error);
-                
-                setTimeout(() => {
-                    error.remove();
-                }, 2000);
-            }
-        }
-
-        // Отмена взлома
-        function abortHack() {
-            showPage(1);
-        }
-
-        // Раскрыть секрет
-        function revealSecret() {
-            showPage(4);
-            createEmojiExplosion();
-            
-            // Изменить сообщение для разнообразия
-            const messages = [
-                "I LOVE YOU",
-                "ТЫ МОЯ ЛЮБОВЬ",
-                "YOU OWN MY HEART",
-                "FOREVER YOURS",
-                "MY HEART IS YOURS",
-                "LOVE YOU TO THE MOON AND BACK",
-                "YOU ARE MY EVERYTHING",
-                "MY SOUL BELONGS TO YOU"
-            ];
-            
-            const message = messages[Math.floor(Math.random() * messages.length)];
-            document.getElementById('secretMessage').textContent = message;
-        }
-
-        // Показать кредиты
-        function showCredits() {
-            showPage(5);
-        }
-
-        // Перезапустить
-        function restart() {
-            document.getElementById('hackCode').value = '';
-            showPage(1);
-        }
-
-        // Инициализация
-        window.onload = function() {
-            createMatrixRain();
-            simulateLoading();
-            
-            // Добавить звуковые эффекты (визуальные)
-            document.addEventListener('click', () => {
-                // Можно добавить вибрацию на телефонах
-                if ('vibrate' in navigator) {
-                    navigator.vibrate(50);
-                }
-            });
+        const passwords = {
+            1: [
+                'цветок', 'цветы', 'цветочек', 'розочка', 'бутон', 'лепесток', 'роза', 'ромашка',
+                'тюльпан', 'лилия', 'орхидея', 'пион', 'гвоздика', 'хризантема', 'фиалка', 'ландыш',
+                'подснежник', 'мимоза', 'нарцисс', 'ирис', 'георгин', 'астра', 'гладиолус', 'колокольчик',
+                'одуванчик', 'василёк', 'мак', 'подсолнух', 'клевер', 'лютик', 'незабудка', 'жасмин',
+                'сирень', 'черёмуха', 'акация', 'каштан', 'тополь', 'берёза', 'рябина', 'калинка',
+                'малинка', 'ягодка', 'звёздочка', 'солнышко', 'радость', 'весна', 'лето', 'природа',
+                'сад', 'парк', 'поле', 'луг', 'газон', 'клумба', 'ваза', 'букет', 'веночек', 'гирлянда',
+                'цветущий', 'расцвет', 'цветение', 'расцвести', 'распуститься', 'бутончик', 'цветочный',
+                'растение', 'расти', 'трава', 'деревце', 'кустик', 'веточка', 'листик', 'стебелёк',
+                '🌸', '🌺', '💐', '🥀', '🌷', '🌻', '🌼', '🌹', '🪷', '🌱', '🌳', '🌴', '🌿', '☘️', '🍀'
+            ],
+            2: [
+                'любовь', 'люблю', 'любимая', 'любимый', 'сердце', 'чувства', 'романтика', 'страсть',
+                'нежность', 'ласка', 'забота', 'тепло', 'радость', 'счастье', 'блаженство', 'восторг',
+                'умиление', 'восхищение', 'обожание', 'поклонение', 'преданность', 'верность', 'доверие',
+                'понимание', 'поддержка', 'помощь', 'участие', 'сочувствие', 'сострадание', 'симпатия',
+                'привязанность', 'влечение', 'желание', 'мечта', 'грёза', 'фантазия', 'идеал', 'кумир',
+                'божество', 'ангел', 'фея', 'принцесса', 'королева', 'богиня', 'звезда', 'солнце', 'луна',
+                'космос', 'вселенная', 'мир', 'планета', 'земля', 'рай', 'небо', 'душа', 'сердечко',
+                'любимка', 'любимочка', 'дорогая', 'милая', 'славная', 'хорошая', 'добрая', 'светлая',
+                'чистая', 'искренняя', 'настоящая', 'верная', 'надёжная', 'сильная', 'смелая', 'умная',
+                'мудрая', 'талантливая', 'креативная', 'творческая', 'интересная', 'увлекательная',
+                'яркая', 'эффектная', 'стильная', 'модная', 'современная', 'актуальная', 'важная', 'нужная',
+                '❤️', '💕', '💖', '💓', '💝', '💗', '💞', '💟', '❣️', '💘', '💌', '💋', '😍', '😘', '🥰'
+            ],
+            3: [
+                'ты', 'тыся', 'твоя', 'твои', 'твоё', 'тебя', 'тобой', 'тебе', 'красивая', 'прекрасная',
+                'удивительная', 'особенная', 'восхитительная', 'изумительная', 'потрясающая', 'великолепная',
+                'замечательная', 'чудесная', 'волшебная', 'сказочная', 'неповторимая', 'уникальная',
+                'единственная', 'незабываемая', 'дорогая', 'милая', 'славная', 'хорошая', 'добрая',
+                'светлая', 'чистая', 'искренняя', 'настоящая', 'верная', 'надёжная', 'сильная', 'смелая',
+                'умная', 'мудрая', 'талантливая', 'креативная', 'творческая', 'интересная', 'увлекательная',
+                'яркая', 'эффектная', 'стильная', 'модная', 'современная', 'актуальная', 'важная', 'нужная',
+                'любимая', 'родная', 'близкая', 'дорогая', 'ценная', 'драгоценная', 'бесценная', 'незаменимая',
+                'необходимая', 'желанная', 'долгожданная', 'ожидаемая', 'жданная', 'милая', 'прекрасная',
+                'чудесная', 'восхитительная', 'изумительная', 'потрясающая', 'великолепная', 'бесподобная',
+                'несравненная', 'непревзойдённая', 'идеальная', 'совершенная', 'безупречная', 'безукоризненная',
+                'твоя', 'твой', 'твоё', 'твои', 'тебя', 'тобой', 'тебе', 'ты', 'твоя', 'твой', 'твоё', 'твои',
+                'моя', 'мой', 'моё', 'мои', 'меня', 'мной', 'мне', 'я', 'моя', 'мой', 'моё', 'мои'
+            ],
+            4: [
+                'да', 'дада', 'согласна', 'соглашаюсь', 'навсегда', 'всегда', 'вечно', 'бесконечно',
+                'неизменно', 'постоянно', 'непрерывно', 'безусловно', 'безоговорочно', 'определённо',
+                'несомненно', 'безусловно', 'точно', 'именно', 'правильно', 'верно', 'хорошо', 'ладно',
+                'договорились', 'идеально', 'прекрасно', 'отлично', 'замечательно', 'восхитительно',
+                'бесподобно', 'неповторимо', 'уникально', 'особенно', 'специально', 'персонально',
+                'индивидуально', 'лично', 'частно', 'секретно', 'конфиденциально', 'интимно', 'лично',
+                'навек', 'навеки', 'навека', 'до конца', 'до смерти', 'посмертно', 'бессмертно', 'вечно',
+                'согласие', 'согласна', 'соглашаюсь', 'принимаю', 'принимаю', 'подтверждаю', 'подтверждаю',
+                'утверждаю', 'утверждаю', 'разрешаю', 'разрешаю', 'позволяю', 'позволяю', 'допускаю',
+                'допускаю', 'признаю', 'признаю', 'принимаю', 'принимаю', 'одобряю', 'одобряю', 'утверждаю',
+                'подписываю', 'подписываюсь', 'соглашаюсь', 'согласна', 'да', 'конечно', 'безусловно',
+                'несомненно', 'определённо', 'точно', 'именно', 'правильно', 'верно', 'хорошо', 'ладно',
+                'да', 'yes', 'forever', 'always', 'i do', 'agree', '💐', '❤️', '∞', '✅', '✔️', '👍', '💯'
+            ]
         };
 
-        // Пасхалка: нажатие на Ctrl+H
-        document.addEventListener('keydown', (e) => {
-            if (e.ctrlKey && e.key === 'h') {
-                e.preventDefault();
-                if (document.getElementById('page1').classList.contains('hidden')) {
-                    showPage(1);
+        const hints = {
+            1: [
+                '💡 Подумай о том, что дарят на праздники',
+                '💡 Оно растёт в саду и имеет лепестки',
+                '💡 Начинается на "Ц", "Р" или эмодзи 🌸'
+            ],
+            2: [
+                '💡 Это чувство, которое ты испытываешь',
+                '💡 Оно бьётся в груди',
+                '💡 Символ: ❤️ или слово из 6-7 букв'
+            ],
+            3: [
+                '💡 Это обращение к одному человеку',
+                '💡 Местоимение или комплимент',
+                '💡 Короткое слово или прилагательное'
+            ],
+            4: [
+                '💡 Подтверждение согласия',
+                '💡 Ответ на важный вопрос',
+                '💡 "Да", "Навсегда", "Вечно" или "💐"'
+            ]
+        };
+
+        const levelMessages = {
+            1: ['> УРОВЕНЬ 1: ОБНАРУЖЕН БРАНДМАУЭР', '> ОБХОД БОТАНИЧЕСКОЙ ЗАЩИТЫ...', '> ВВЕДИТЕ КОД НА РАСТИТЕЛЬНОЙ ОСНОВЕ'],
+            2: ['> УРОВЕНЬ 2: ЭМОЦИОНАЛЬНОЕ ШИФРОВАНИЕ', '> РАСШИФРОВКА ЧУВСТВ...', '> ВВЕДИТЕ ЭМОЦИОНАЛЬНЫЙ КОД'],
+            3: ['> УРОВЕНЬ 3: ПРОТОКОЛ СЕРДЦА', '> ДОСТУП К ЯДРУ СИСТЕМЫ...', '> ВВЕДИТЕ ПЕРСОНАЛЬНЫЙ КОД'],
+            4: ['> УРОВЕНЬ 4: ФИНАЛЬНАЯ АУТЕНТИФИКАЦИЯ', '> ПОДТВЕРЖДЕНИЕ ПОСТОЯННОГО ДОСТУПА...', '> ВВЕДИТЕ КОД ОБЯЗАТЕЛЬСТВ']
+        };
+
+        function initAudio() { 
+            audioContext = new (window.AudioContext || window.webkitAudioContext)(); 
+        }
+
+        function playRhythmicMusic() {
+            if (!musicEnabled || !audioContext) return;
+            
+            const bassFreqs = [110, 110, 130.81, 110, 146.83, 110, 164.81, 130.81];
+            let bassIndex = 0;
+            
+            const chordFreqs = [
+                [220, 277.18, 329.63],
+                [196, 246.94, 293.66],
+                [164.81, 207.65, 246.94],
+                [146.83, 185, 220]
+            ];
+            let chordIndex = 0;
+            
+            musicGain = audioContext.createGain();
+            musicGain.connect(audioContext.destination);
+            musicGain.gain.value = musicVolume;
+            
+            drumInterval = setInterval(() => {
+                const bassOsc = audioContext.createOscillator();
+                const bassGain = audioContext.createGain();
+                bassOsc.connect(bassGain);
+                bassGain.connect(musicGain);
+                
+                bassOsc.frequency.value = bassFreqs[bassIndex % bassFreqs.length];
+                bassOsc.type = 'sawtooth';
+                bassGain.gain.setValueAtTime(0.2, audioContext.currentTime);
+                bassGain.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.2);
+                
+                bassOsc.start(audioContext.currentTime);
+                bassOsc.stop(audioContext.currentTime + 0.2);
+                
+                if (bassIndex % 2 === 0) {
+                    const hatOsc = audioContext.createOscillator();
+                    const hatGain = audioContext.createGain();
+                    hatOsc.connect(hatGain);
+                    hatGain.connect(musicGain);
+                    
+                    hatOsc.type = 'square';
+                    hatOsc.frequency.value = 800 + Math.random() * 200;
+                    hatGain.gain.setValueAtTime(0.05, audioContext.currentTime);
+                    hatGain.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.05);
+                    
+                    hatOsc.start(audioContext.currentTime);
+                    hatOsc.stop(audioContext.currentTime + 0.05);
                 }
+                
+                if (bassIndex % 4 === 0) {
+                    const chord = chordFreqs[chordIndex % chordFreqs.length];
+                    chord.forEach((freq, i) => {
+                        const osc = audioContext.createOscillator();
+                        const gain = audioContext.createGain();
+                        osc.connect(gain);
+                        gain.connect(musicGain);
+                        
+                        osc.type = i === 0 ? 'triangle' : 'sine';
+                        osc.frequency.value = freq;
+                        gain.gain.setValueAtTime(0.08, audioContext.currentTime);
+                        gain.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.4);
+                        
+                        osc.start(audioContext.currentTime);
+                        osc.stop(audioContext.currentTime + 0.4);
+                    });
+                    chordIndex++;
+                }
+                
+                bassIndex++;
+            }, 250);
+        }
+
+        function stopMusic() {
+            if (drumInterval) {
+                clearInterval(drumInterval);
+                drumInterval = null;
             }
+            musicOscillators.forEach(osc => {
+                try { osc.stop(); } catch(e) {}
+            });
+            musicOscillators = [];
+        }
+
+        function toggleMusic() {
+            if (!audioContext) initAudio();
+            musicEnabled = !musicEnabled;
+            document.getElementById('musicBtn').textContent = musicEnabled ? '🎵 Music: ON' : '🎵 Music: OFF';
+            if (musicEnabled) {
+                playRhythmicMusic();
+            } else {
+                stopMusic();
+            }
+        }
+
+        function setVolume(value) {
+            musicVolume = value / 100 * 0.5;
+            if (musicGain) musicGain.gain.value = musicVolume;
+        }
+        
+        function playSound(freq, duration, type = 'sine') {
+            if (!soundEnabled || !audioContext) return;
+            const osc = audioContext.createOscillator();
+            const gain = audioContext.createGain();
+            osc.connect(gain);
+            gain.connect(audioContext.destination);
+            osc.frequency.value = freq;
+            osc.type = type;
+            gain.gain.setValueAtTime(0.3, audioContext.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + duration);
+            osc.start(audioContext.currentTime);
+            osc.stop(audioContext.currentTime + duration);
+        }
+
+        function playSuccessSound() {
+            if (!soundEnabled) return;
+            [523, 659, 784, 1047].forEach((f, i) => setTimeout(() => playSound(f, 0.3), i * 150));
+        }
+
+        function playErrorSound() { if (soundEnabled) playSound(150, 0.5, 'sawtooth'); }
+        function playClickSound() { if (soundEnabled) playSound(800, 0.1, 'square'); }
+        function playHintSound() { if (soundEnabled) playSound(1200, 0.2, 'sine'); }
+        
+        function toggleSound() {
+            soundEnabled = !soundEnabled;
+            document.getElementById('soundBtn').textContent = soundEnabled ? '🔊 Sound: ON' : '🔇 Sound: OFF';
+        }
+
+        const matrixCanvas = document.getElementById('matrixCanvas');
+        const matrixCtx = matrixCanvas.getContext('2d');
+        matrixCanvas.width = window.innerWidth;
+        matrixCanvas.height = document.body.scrollHeight;
+        
+        const matrixChars = '01FLOWERHACKLOVE💐❤️цветылюбовь';
+        const matrixDrops = Array(Math.floor(matrixCanvas.width / 14)).fill(1);
+
+        function drawMatrix() {
+            matrixCtx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            matrixCtx.fillRect(0, 0, matrixCanvas.width, matrixCanvas.height);
+            matrixCtx.fillStyle = '#0f0';
+            matrixCtx.font = '14px Courier New';
+            
+            matrixDrops.forEach((drop, i) => {
+                matrixCtx.fillText(matrixChars[Math.floor(Math.random() * matrixChars.length)], i * 14, drop * 14);
+                if (drop * 14 > matrixCanvas.height && Math.random() > 0.975) matrixDrops[i] = 0;
+                matrixDrops[i]++;
+            });
+        }
+
+        const heartCanvas = document.getElementById('heartCanvas');
+        const heartCtx = heartCanvas.getContext('2d');
+        heartCanvas.width = 600;
+        heartCanvas.height = 600;
+        
+        const heartPoints = [];
+        for (let i = 0; i < 2000; i++) {
+            const t = Math.random() * Math.PI * 2;
+            const x = 16 * Math.pow(Math.sin(t), 3);
+            const y = -(13 * Math.cos(t) - 5 * Math.cos(2*t) - 2 * Math.cos(3*t) - Math.cos(4*t));
+            heartPoints.push({ x: x * 15 + 300, y: y * 15 + 300 });
+        }
+
+        function drawHeartMatrix() {
+            heartCtx.clearRect(0, 0, heartCanvas.width, heartCanvas.height);
+            heartCtx.fillStyle = '#ff69b4';
+            heartCtx.font = '16px Courier New';
+            
+            heartPoints.forEach(point => {
+                if (Math.random() > 0.5) {
+                    const chars = '💐🌸❤️цветылюбовьflowerslove';
+                    heartCtx.fillText(chars[Math.floor(Math.random() * chars.length)], point.x, point.y);
+                }
+            });
+        }
+
+        function createFlower() {
+            const flower = document.getElementById('flower');
+            flower.innerHTML = '';
+            for (let i = 0; i < 8; i++) {
+                const petal = document.createElement('div');
+                petal.className = 'petal';
+                petal.style.setProperty('--rotation', `${i * 45}deg`);
+                petal.style.animationDelay = `${i * 0.2}s`;
+                petal.style.top = `${50 - Math.cos(i * 45 * Math.PI / 180) * 30}%`;
+                petal.style.left = `${50 - Math.sin(i * 45 * Math.PI / 180) * 30}%`;
+                flower.appendChild(petal);
+            }
+            const center = document.createElement('div');
+            center.className = 'flower-center';
+            flower.appendChild(center);
+        }
+
+        function startTimer() {
+            timerInterval = setInterval(() => {
+                timeLeft--;
+                const mins = Math.floor(timeLeft / 60).toString().padStart(2, '0');
+                const secs = (timeLeft % 60).toString().padStart(2, '0');
+                document.getElementById('timer').textContent = `${mins}:${secs}`;
+                if (timeLeft <= 0) abortHack();
+            }, 1000);
+        }
+
+        function addMessage(text, type = 'info') {
+            const output = document.getElementById('terminalOutput');
+            const msg = document.createElement('p');
+            msg.className = `message ${type}`;
+            msg.textContent = text;
+            output.appendChild(msg);
+            output.scrollTop = output.scrollHeight;
+        }
+
+        function updateProgress() {
+            const pct = Math.round((currentLevel / totalLevels) * 100);
+            document.getElementById('progressFill').style.width = pct + '%';
+            document.getElementById('progressText').textContent = pct + '%';
+        }
+
+        function updateLevelIndicators() {
+            document.querySelectorAll('.level-dot').forEach((dot, i) => {
+                dot.className = 'level-dot' + (i + 1 < currentLevel ? ' completed' : i + 1 === currentLevel ? ' active' : '');
+            });
+        }
+
+        function showHint() {
+            playHintSound();
+            const hintIndex = Math.min(hintsUsed, hints[currentLevel].length - 1);
+            addMessage(hints[currentLevel][hintIndex], 'hint');
+            hintsUsed++;
+            timeLeft -= 15;
+        }
+
+        function attemptDecrypt() {
+            playClickSound();
+            const input = document.getElementById('passwordInput');
+            const password = input.value.trim().toLowerCase();
+            
+            if (!password) {
+                addMessage('> ОШИБКА: Введите пароль', 'error');
+                playErrorSound();
+                return;
+            }
+
+            const isValid = passwords[currentLevel].some(p => 
+                p.toLowerCase().includes(password) || password.includes(p.toLowerCase())
+            );
+
+            if (isValid) {
+                playSuccessSound();
+                addMessage(`> УРОВЕНЬ ${currentLevel} ЗАВЕРШЁН!`, 'success');
+                addMessage('> ПЕРЕХОД К СЛЕДУЮЩЕМУ УРОВНЮ...', 'info');
+                
+                currentLevel++;
+                hintsUsed = 0;
+                input.value = '';
+                updateProgress();
+                updateLevelIndicators();
+
+                if (currentLevel > totalLevels) {
+                    completeHack();
+                } else {
+                    levelMessages[currentLevel].forEach(msg => setTimeout(() => addMessage(msg, 'info'), 500));
+                }
+            } else {
+                playErrorSound();
+                addMessage('> ДОСТУП ЗАПРЕЩЁН - Неверный пароль', 'error');
+                addMessage('> Попробуйте снова или используйте подсказку', 'error');
+                timeLeft -= 30;
+            }
+        }
+
+        function completeHack() {
+            hackComplete = true;
+            clearInterval(timerInterval);
+            stopMusic();
+            playSuccessSound();
+            
+            // Select random romantic message
+            const randomMessage = romanticMessages[Math.floor(Math.random() * romanticMessages.length)];
+            document.getElementById('loveText').textContent = randomMessage.main;
+            document.getElementById('secretMessage').innerHTML = randomMessage.secret;
+            
+            document.getElementById('flowerContainer').style.display = 'block';
+            createFlower();
+            setTimeout(() => {
+                document.getElementById('successMessage').style.display = 'block';
+                playSuccessSound();
+            }, 1500);
+        }
+
+        function abortHack() {
+            clearInterval(timerInterval);
+            stopMusic();
+            addMessage('> ВЗЛОМ ПРЕРВАН', 'error');
+            playErrorSound();
+            setTimeout(() => { alert('Взлом прерван! Попробовать снова?'); location.reload(); }, 500);
+        }
+
+        function restartHack() { location.reload(); }
+
+        document.getElementById('passwordInput').addEventListener('keypress', e => {
+            if (e.key === 'Enter') attemptDecrypt();
         });
 
-        // Пасхалка: ввод "iloveyou" на любой странице
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' && !document.getElementById('hackCode').contains(document.activeElement)) {
-                const code = document.getElementById('hackCode').value.trim().toLowerCase();
-                if (code === 'iloveyou' || code === 'люблю') {
-                    revealSecret();
-                }
-            }
+        window.addEventListener('load', () => {
+            startTimer();
+            setInterval(drawMatrix, 50);
+            setInterval(drawHeartMatrix, 100);
+            setTimeout(() => levelMessages[1].forEach(msg => addMessage(msg, 'info')), 1000);
+        });
+
+        window.addEventListener('resize', () => {
+            matrixCanvas.width = window.innerWidth;
+            matrixCanvas.height = document.body.scrollHeight;
         });
     </script>
 </body>
